@@ -1,5 +1,6 @@
 package com.learnfromexamples.springbootmongodb.services;
 
+import com.learnfromexamples.springbootmongodb.model.Department;
 import com.learnfromexamples.springbootmongodb.model.Employee;
 import com.learnfromexamples.springbootmongodb.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ public class EmployeeService {
     private final SequenceGeneratorService sequenceGeneratorService;
     public Employee save(Employee employee){
         employee.setId(sequenceGeneratorService.generateSequence(Employee.SEQUENCE_NAME));
+        employee.getDepartment().setId(sequenceGeneratorService.generateDepartmentSequence(Department.SEQUENCE_NAME));
         return employeeRepository.save(employee);
     }
 
@@ -38,7 +40,7 @@ public class EmployeeService {
     public Employee update(int  employeeId, Employee employee){
         Employee existingEmployee = employeeRepository.findById(employeeId).get();
         existingEmployee = employee;
-        existingEmployee.setId(employeeId);
+        existingEmployee.setId((long) employeeId);
         return employeeRepository.save(existingEmployee);
     }
 

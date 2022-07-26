@@ -20,12 +20,21 @@ public class SequenceGeneratorService {
 
 
 
-    public int generateSequence(String seqName) {
+    public long generateSequence(String seqName) {
 
         DatabaseSequence counter = mongoOperations.findAndModify(query(where("_empId").is(seqName)),
                 new Update().inc("seq", 1), options().returnNew(true).upsert(true),
                 DatabaseSequence.class);
-        return !Objects.isNull(counter) ? (int) counter.getSeq() : 1;
+        return !Objects.isNull(counter) ? counter.getSeq() : 1;
+
+    }
+
+    public long generateDepartmentSequence(String seqName) {
+
+        DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(seqName)),
+                new Update().inc("seq", 1), options().returnNew(true).upsert(true),
+                DatabaseSequence.class);
+        return !Objects.isNull(counter) ? counter.getSeq() : 1;
 
     }
 }
