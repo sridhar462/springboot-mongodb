@@ -25,6 +25,16 @@ public class EmployeeService {
         return employeeRepository.findById(employeeId).get();
     }
 
+    public  List<Employee> findByFirstName(String  employeeName){
+        return employeeRepository.findByFirstName(employeeName);
+    }
+
+    public  List<Employee> findByLastName(String  employeeName){
+        return employeeRepository.findByLastName(employeeName);
+    }
+
+
+
     public Employee update(int  employeeId, Employee employee){
         Employee existingEmployee = employeeRepository.findById(employeeId).get();
         existingEmployee = employee;

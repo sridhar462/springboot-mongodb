@@ -17,6 +17,16 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+    @GetMapping("/employee/{firstName}")
+    public List<Employee> findByFirstName(@PathVariable("firstName") String  firstName){
+        return employeeService.findByFirstName(firstName);
+    }
+
+    @GetMapping("/employee")
+    public List<Employee> findByLastName(@RequestParam("lastName") String  lastName){
+        return employeeService.findByLastName(lastName);
+    }
+
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployee(@PathVariable("employeeId") int  employeeId){
         return employeeService.getEmployee(employeeId);
