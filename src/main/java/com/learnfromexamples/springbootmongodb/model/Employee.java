@@ -22,4 +22,5 @@ public class Employee {
     private String lastName;
     private String mobileNumber;
     private String[] hobbies;
+    private Address address;
 }
