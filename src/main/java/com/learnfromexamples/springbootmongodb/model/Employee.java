@@ -24,6 +24,7 @@ public class Employee {
     private String mobileNumber;
     private String[] hobbies;
     private Address address;
+    private Double salary;
     @DBRef(db = "department")
     private Department department;
 }

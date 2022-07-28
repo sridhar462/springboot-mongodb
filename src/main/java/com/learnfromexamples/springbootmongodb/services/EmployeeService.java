@@ -47,4 +47,8 @@ public class EmployeeService {
     public  void delete(int  employeeId){
         employeeRepository.deleteById(employeeId);
     }
+
+    public List<Employee> findEmployeesBetween(Double minSalary, Double maxSalary){
+        return employeeRepository.findEmployeesBetween(minSalary,maxSalary);
+    }
 }

@@ -16,4 +16,7 @@ public interface EmployeeRepository extends MongoRepository<Employee, Integer> {
 
     @Query("{'lastName': :#{#lastName}}")
     List<Employee> findByLastName( @Param("lastName") String lastName);
+
+    @Query(value = "{'salary': {'$gte': :#{#minSalary}, '$lte': :#{#maxSalary}}}")
+    List<Employee> findEmployeesBetween(@Param("minSalary")Double minSalary, @Param("maxSalary") Double maxSalary);
 }

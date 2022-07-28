@@ -45,7 +45,11 @@ public class EmployeeController {
 
     @PutMapping("/update/{employeeId}")
     public Employee deleteEmployee(@PathVariable( "employeeId") int  employeeId, @RequestBody Employee employee){
-       return employeeService.update(employeeId,employee);
+       return employeeService.update(employeeId, employee);
     }
 
+    @GetMapping("/betweenSalary/{minSalary}/{maxSalary}")
+    public List<Employee> findEmployeesBetween(@PathVariable("minSalary") double  minSalary, @PathVariable("maxSalary") double  maxSalary){
+        return employeeService.findEmployeesBetween(minSalary, maxSalary);
+    }
 }
